@@ -1,0 +1,284 @@
+**Lesson 1: Single-Page Apps vs. Multiple-Page Apps**
+
+One of the major advantages of single-page applications is that the app feels very smooth, and it doesn't require any reloading to append new data.
+
+**Key Differences Between the Two:**
+
+1. **Performance and User Experience:**
+
+   - In a single-page application, there is no need for reloading, and data is processed on the client side, resulting in a much smoother and faster user experience.
+   - In a multi-page application, the initial experience may feel snappier, but it requires a full reload on every navigation.
+
+2. **SEO (Search Engine Optimization):**
+   SEO is more effective on MPAs (Multiple-Page Apps) since the architecture is native to search engine crawlers. Such apps provide better control over SEO due to multiple pages and changing content. Additionally, developers can add meta tags to every page.
+
+**Examples:**
+
+1. **Multi-Page Apps:** Wikipedia, news blogging, shopping websites.
+2. **Single-Page Apps:** Gmail, Twitter, Facebook.
+
+In this era, we have a hybrid approach that uses a mixture of both single-page and multi-page applications to get the best of both worlds.
+
+For further reading, check out this article: https://andrewly.medium.com/pros-and-cons-between-single-page-and-multi-page-apps-8f4b26acd9c9#:~:text=Advantages%20of%20Multi%2DPage%20Applications&text=SEO%20is%20better%20on%20MPAs,meta%20tags%20to%20every%20page.
+
+**Conclusion:**
+Each architecture has its pros and cons, depending on the situation.
+
+**Lesson 2: React Setup**
+
+1. Install Tailwind CSS with Vite: https://tailwindcss.com/docs/guides/vite.
+
+**Lesson 3: Converting a Multi-Page App to a Single-Page App**
+
+**Step 1:** Go to the `tailwind.config` file in your Tailwind layouts assignment and copy the theming into the React Tailwind config file.
+
+**Step 2:** Let's assume we need to create a login page first.
+
+- Go to the layouts assignment on GitHub -> `src` -> `login` -> `index.html` -> only copy the main part inside the body.
+- Copy and paste it inside the `App.js` file.
+
+code->
+
+  <body class="bg-neutral-1000">
+    <header class="fixed flex w-full items-center justify-center px-3 py-4">
+      <img src="../../public/images/100x-logo.svg" />
+    </header>
+    <main class="flex h-screen w-full items-center">
+      <section class="flex w-full flex-col gap-10 px-7">
+        <section class="flex flex-col gap-3">
+          <h1 class="text-1.9rem font-bold leading-normal text-neutral-50">
+            Happening now
+          </h1>
+          <p class="text-base font-medium leading-normal text-neutral-50">
+            Join today.
+          </p>
+        </section>
+        <a href="../login/create-account-step-1.html">
+          <button
+            class="shadow-button w-full rounded-full bg-neutral-50 px-6 py-2 text-base font-bold leading-normal text-neutral-1000 backdrop-blur-xl hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-25"
+          >
+            Create account
+          </button>
+        </a>
+        <div class="flex items-center">
+          <hr class="mr-2 flex-grow border-t-2 border-neutral-700" />
+          <span class="font-regular text-base leading-normal text-neutral-50"
+            >or</span
+          >
+          <hr class="ml-2 flex-grow border-t-2 border-neutral-700" />
+        </div>
+        <section class="flex flex-col gap-5">
+          <p class="text-base font-medium leading-normal text-neutral-50">
+            Already have an account?
+          </p>
+
+          <a href="../home-feed/index.html">
+            <button
+              class="flex w-full items-center justify-center gap-2.5 rounded-5xl border border-solid border-button-stroke px-6 py-2 shadow-3xl backdrop-blur-23.66"
+            >
+              <span
+                class="text-center text-base font-bold not-italic leading-normal text-twitter-default"
+                >Sign in</span
+              >
+            </button>
+          </a>
+        </section>
+      </section>
+    </main>
+
+  </body>
+
+**Step 3:** Accelerated part -> the HTML to JSX conversion.
+
+Change the `<body>` tag into `<div>`, and then convert the body part into JSX using an extension.
+
+**Fixing Errors:**
+
+1. Images are not displaying correctly because the way React handles images or the way single-page applications handle images is different from multi-page applications. Download the image into the assets folder.
+
+**Step 4:** Import the image in the `App.js` file.
+
+```jsx
+import Logo from "./assets/100x-logo.svg";
+<img src={Logo} />; // This is how you import variables in JSX.
+```
+
+**Step 5:** Make the code more declarative and break down the components into separate files.
+
+- **Header:**
+
+Creating a component in React:
+
+```jsx
+function Header() {
+  return {
+    // JSX code
+  };
+}
+```
+
+Calling the component:
+
+```jsx
+<Header />
+```
+
+- **MainContent:**
+
+Button (Sign-in)
+
+However, this component is not useful at all because we are using the button in another place as well. Ideally, we want to use the same function in both of these places; that's where the principle "Do not repeat yourself" comes into the picture.
+
+So, we have two buttons, "Create Account" and "Sign In," and we have a component named "Button." To differentiate both:
+
+```jsx
+<Button variant="outline" text="Sign In" />
+<Button variant="default" text="Create Account" />
+```
+
+These are the properties, and this is how you pass properties in React; properties also have a short name known as "props." So, the "variant" and "text" become props for the component Button.
+
+Passing these props into the function:
+
+```jsx
+function Button(props) {}
+```
+
+We use the dot operator to extract information from this property. This property is nothing but an object, which you can check using:
+
+```jsx
+console.log("props", props);
+```
+
+The output will be:
+
+```jsx
+// Output
+text: "Sign In";
+variant: "outline";
+```
+
+You can extract the text or variant using:
+
+```jsx
+console.log("props", props.text);
+```
+
+The output will be:
+
+// Output
+Sign In
+
+The next step is to write logic for the button. If the variant is "outline," return an outline button, and if the variant is "default," return a default button.
+
+**Code for Buttons Logic:**
+
+```jsx
+function Button(props) {
+  if (props.variant === "outline") {
+    return (
+      <button className="flex w-full items-center justify-center gap-2.5 rounded-5xl border border-solid border-button-stroke px-6 py-2 shadow-3xl backdrop-blur-23.66">
+        <span className="text-center text-base font-bold not-italic leading-normal text-twitter-default">
+          {props.text}
+        </span>
+      </button>
+    );
+  }
+  if (props.variant === "default") {
+    return (
+      <button className="shadow-button w-full rounded-full bg-neutral-50 px-6 py-2 text-base font-bold leading-normal text-neutral-1000 backdrop-blur-xl hover-bg-neutral-200 disabled:pointer-events-none disabled:opacity-25">
+        {props.text}
+      </button>
+    );
+  }
+}
+```
+
+Now you can use these buttons by specifying their variant and text:
+
+```jsx
+<Button variant="outline" text="Sign In" />
+<Button variant="default" text="Create Account" />
+```
+
+If you need one more button, for example, "Delete," you can create it like this:
+
+```jsx
+<Button variant="outline" text="Delete" /> // Blue outline
+<Button variant="default" text="Delete" /> // White button
+```
+
+An important note: Whenever you need to pass any JavaScript variable with a dynamic value to JSX, use curly braces `{}`.
+
+**An Improved Approach:**
+
+Siddhant suggests making these components versatile so that they can be used in other projects too. Here's a more efficient method:
+
+Instead of using if-else logic, utilize the concept of states. Break down the styling into several steps:
+
+**1. Base Style:** All buttons share a base style to which customization can be added.
+
+```jsx
+const base = ""; // Common Tailwind classes applied across buttons, e.g., "font-bold"
+```
+
+**2. Size:**
+
+```jsx
+const size = {
+  sm: "text",
+  md: "text-md",
+  lg: "text-lg",
+};
+```
+
+Now, you don't need to add conditionals for when to use "md," "lg," or "sm." You can access the appropriate value using keys:
+
+```jsx
+{
+  size[props.size];
+}
+```
+
+**3. Variant Styles:**
+
+```jsx
+const variant = {
+  default:
+    "shadow-button w-full rounded-6xl bg-neutral-50 px-6 py-2 text-black-500 font-bold leading-normal text-neutral-1000 backdrop-blur-xl hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-25",
+  outline:
+    "flex w-full items-center justify-center gap-2.5 rounded-6xl border border-solid border-button-stroke px-6 py-2 shadow-3xl backdrop-blur-23.66 text-blue-500", // Added text-blue-500 for blue text color
+};
+```
+
+**4. Disabled Styles:**
+
+You can apply styles for the disabled state:
+
+```jsx
+const disabledStyles = props.disabled ? "cursor-not-allowed opacity-50" : "";
+```
+
+Now, combine these styles to create the classes for your button:
+
+```jsx
+const classes = `${base} ${size[props.size]} ${
+  variant[props.variant]
+} ${disabledStyles}`;
+```
+
+This approach makes your code cleaner and more scalable. You can easily add more states by adding more variables and appending those classes to the `classes` variable.
+
+For the disabled state, if you pass the `disabled` prop from the Button component, it will be used as an argument:
+
+```jsx
+const disabledStyles = props.disabled ? "cursor-not-allowed opacity-50" : "";
+```
+
+In this way, you have a versatile and efficient way of creating and styling buttons in your React application.
+
+**JavaScript Topics Discussed in the Lesson:**
+
+- Ternary operator: (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator)
+- Objects:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+- JavaScript data structures: https://www.freecodecamp.org/news/data-structures-in-javascript-with-examples/)
