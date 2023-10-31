@@ -1,0 +1,45 @@
+**MODULE 5: LAYOUTS**
+
+**Lesson 1: Layouts - Building the First Page of the Capstone Project**
+
+In this lesson, you'll learn how to build the first page of the capstone project and understand the concepts of layout.
+
+**Understanding Layouts:**
+
+Layouts in web design can be distilled into two primary types:
+
+1. **Vertical Layout**: This layout arranges elements vertically, one above the other. It's often used for components like lists, forms, and sections of a webpage.
+
+2. **Horizontal Layout**: This layout arranges elements side by side in a horizontal direction. It's commonly used for navigation bars, grids, and components that should be displayed next to each other.
+
+**Using Flex for Vertical Layout:**
+
+To create a vertical layout using CSS Flexbox, you can use the `flex-direction` property set to `column`. For example:
+
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+This CSS code sets the `container` to have a vertical layout, with elements stacking on top of each other.
+
+**Using Flex for Horizontal Layout:**
+
+To create a horizontal layout using CSS Flexbox, set the `flex-direction` property to `row`. For example:
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+}
+```
+
+This CSS code makes the elements inside the `container` display in a horizontal layout, from left to right.
+
+**Importance of Building Components:**
+
+Building components is the starting point for every project. After you've built components, the next step is to create layouts. The process of building layouts involves arranging and organizing these components to create a cohesive and functional user interface.
+
+Please note that some grammatical mistakes have been corrected for clarity.
