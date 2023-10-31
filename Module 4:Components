@@ -1,0 +1,85 @@
+**MODULE 4: COMPONENTS**
+
+**Lesson 1: Making Components - Part 1**
+
+In this lesson, you'll learn how to set up Tailwind CSS from scratch using the Tailwind CLI tool. The goal is to create a development environment for building UI components.
+
+**Step 1: Create Two Folders**
+
+- `src` (source)
+- `dist` (distributables)
+
+The `dist` folder is used to store production-ready CSS files. This separation is crucial because Tailwind CSS uses a feature known as "Tailwind Purge."
+
+**Step 2: Initialize Tailwind CSS**
+
+Open your terminal and run the following command:
+
+```bash
+npx tailwindcss init
+```
+
+This will generate a `tailwind.config.js` file, which you can customize to extend Tailwind's capabilities.
+
+Here's an example `tailwind.config.js`:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+**Step 3: Create a CSS File**
+
+Create a file to manage your CSS, e.g., `input.css`.
+
+In `input.css`, add the following Tailwind directives:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+These directives include Tailwind's base, components, and utilities layers.
+
+**Step 4: Start the Tailwind CLI Build Process**
+
+To scan your template files for classes and build your CSS, run the following command:
+
+```bash
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+```
+
+This command watches your input CSS file, processes it, and outputs it to your `dist` directory. It's essential to keep this process running while working on your project.
+
+**Part 2: Introduction to Capstone**
+
+- **Atomic Design:** UI components are like building blocks. Just as in construction, you start with the smallest unit, which, in UI, can be buttons, labels, or other basic elements.
+
+- **Figma:** Figuring out the sizes, margins, padding, and widths are easier in Figma's dev mode. Designers often provide color palettes and color codes, which you can directly use in your Tailwind config.
+
+- **Tailwind Config:** When a color is not available in Tailwind, you can extend it. In the config file, under `extend`, you can add new colors. For example, to add `neutral-50`:
+
+```javascript
+extend: {
+  colors: {
+    "neutral-50": "#f9f9f9",
+  },
+}
+```
+
+- **Searching for Attributes:** When you need to find the right class for a specific style (e.g., 0.5rem padding), search in the Tailwind documentation. For 0.5rem, you'll find the `py-2` class.
+
+- **Tailwind UI:** The official Tailwind website is a great resource. You can also find free resources like Wickedblocks.dev, Preline UI, TailGrids, Flowbite, and Tailwind CSS Debug Screens.
+
+**Lesson 2: Building UI Components & Introduction to Capstone Project**
+
+This lesson covers breaking down a complex project into smaller components, applying Tailwind, theming, and building a UI library. It emphasizes the importance of layouts, both vertical and horizontal.
+
+**Figma vs Code Extension:** You can easily import assets into your project from Figma. Install the Figma extension, select an asset, navigate to the Assets section, and click the download button. This will automatically save the asset under the `public/images` directory in your project.
