@@ -1,0 +1,60 @@
+**Module 7 Lesson: Declarative vs. Imperative Coding**
+
+Imperative coding is concerned with "how" you achieve a result, while declarative coding is focused on "what" you want as the outcome.
+
+In a restaurant example, consider two approaches to getting a table:
+1. **Imperative:** You describe the step-by-step process, like swimming to a specific location by the pool.
+2. **Declarative:** You directly express your desire for a table to the waiter.
+
+The imperative approach focuses on how to get the table, while the declarative approach is about what you want.
+
+In coding, let's take the example of a function that doubles the values in an array:
+1. **Imperative Approach:**
+   
+   ```javascript
+   function double(arr) {
+     let results = [];
+     for (let i = 0; i < arr.length; i++) {
+       results.push(arr[i] * 2);
+     }
+     return results;
+   }
+   ```
+
+2. **Declarative Approach:**
+
+   ```javascript
+   function double(arr) {
+     return arr.map((item) => item * 2);
+   }
+   ```
+
+SQL is a widely used declarative language. Prolog, a language used in AI and ML, is another example, and even HTML can be considered declarative.
+
+**New Way of Thinking About UI**
+
+1. **UI is a Function of State:**
+
+   The declarative way of thinking involves describing what a component looks like under certain conditions. For example, what does a component look like when it is strikethrough, and what does strikethrough mean? You describe components as complete or incomplete. While there may be underlying CSS classes to differentiate these states, the mental model is that you have two states, and you switch from one state to the other without specifying the exact steps.
+
+**Exception-Based Control Flow (Advanced JS Module Lesson)**
+
+In programming, control flow is how a program is executed, often line by line. Control flow includes loops, function calls, and conditional statements.
+
+Exception control flow deals with unexpected errors that can occur, such as division by zero or a database connection error. Exception handling allows you to anticipate and manage these errors.
+
+**Try/Catch Blocks:**
+
+"Try" and "catch" are keywords for handling exceptions. A "try" block contains the code where exceptions can occur, and a "catch" block manages those exceptions.
+
+**Exception Handling in .NET:**
+
+.NET runtime throws exceptions as objects derived from the System.Exception class. The "try..catch..finally" construct is used for exception handling. The "try" block is where exceptions are anticipated, the "catch" block is where they are handled, and the "finally" block is optional and executes in any case.
+
+Exception handling in .NET provides benefits like trapping all failures, eliminating the need to check return values, and improving reliability and performance. It differs from traditional error handling, like using return codes and "go to" statements.
+
+**Java Examples:**
+
+For examples of exception handling in Java, you can refer to the following link: [Java Exception Handling Examples](https://www.programiz.com/java-programming/try-catch).
+
+Please note that the grammar and clarity of these explanations have been improved.
